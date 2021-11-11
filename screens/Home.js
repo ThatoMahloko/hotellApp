@@ -1,57 +1,76 @@
 import React from 'react'
-import { StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity, Touchable } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity, Touchable, ImageBackground } from 'react-native'
 import { Card, Title } from 'react-native-paper'
 import CityCard from '../components/CityCard'
 import LocationCard from '../components/LocationCard'
 const { width, height } = Dimensions.get('screen')
 import ScrollCard from '../components/ScrollCard'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import MoreHotels from './MoreHotels'
 
-const Home = ({ navigation }) => {
+function Home({ navigation }) {
     return (
-        <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
-            <View style={{ backgroundColor: 'white' }}>
-                <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={true} indicatorStyle={'white'}>
-                    <ScrollCard />
-                    <ScrollCard />
-                </ScrollView>
+        <View>
+            <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+                <View style={{ backgroundColor: '#FEFBF3' }}>
+                    <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={true} indicatorStyle={'white'}>
+                        <View style={styles.hotelBody}>
+                            <Card style={styles.body}>
+                                <ImageBackground style={styles.back} source={require('../assets/images/cardOne.jpg')}>
+                                    <View style={styles.cardContent}>
+                                        <Title style={styles.label}>CapeTown</Title>
+                                        <View style={styles.bottomCOntentRow}>
+                                            <TouchableOpacity style={styles.button}  onPress={()=> navigation.navigate('Hotel')}>
+                                                <Text style={styles.buttonText}>BOOK HOTEL</Text>
+                                            </TouchableOpacity>                                         
+                                        </View>
+                                    </View>
+                                </ImageBackground>
+                            </Card>
+                            <Card style={styles.body}>
+                                <ImageBackground style={styles.back} source={require('../assets/images/cardTwo.jpg')}>
+                                    <View style={styles.cardContent}>
+                                        <Title style={styles.label}>Sandton</Title>
+                                        <View style={styles.bottomCOntentRow}>
+                                            <TouchableOpacity style={styles.button}>
+                                                <Text style={styles.buttonText}>BOOK HOTEL</Text>
+                                            </TouchableOpacity>
+                                            <TouchableOpacity>
+                                                <Title style={styles.moreNavText}>MORE HOTELS+</Title>
+                                            </TouchableOpacity>
+                                        </View>
+                                    </View>
+                                </ImageBackground>
+                            </Card>
 
-                <Title style={styles.title}>Recently Booked</Title>
-                <TouchableOpacity>
-                    <Title style={styles.text}>View All</Title>
-                </TouchableOpacity>
-                <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={false} indicatorStyle={'white'}>
-                    <TouchableOpacity>
-                        <CityCard />
+                        </View >                    </ScrollView>
+
+                    <Title style={styles.title}>Recently Booked</Title>
+                    <TouchableOpacity onPress={() => navigation.navigate('More')}>
+                        <Title style={styles.text}>View All</Title>
+                    </TouchableOpacity>
+                    <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={false} indicatorStyle={'white'}>
+
+                        <View>
+                            <CityCard />
+                        </View>
+
+                    </ScrollView>
+                    <Title style={styles.title}>Popular Locations</Title>
+                    <TouchableOpacity onPress={() => navigation.navigate('Popular')}>
+                        <Title style={styles.text}>View All</Title>
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
-                        <CityCard />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <CityCard />
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <CityCard />
-                    </TouchableOpacity>
-                </ScrollView>
-                <Title style={styles.title}>Popular Locations</Title>
-                <TouchableOpacity>
-                    <Title style={styles.text}>View All</Title>
-                </TouchableOpacity>
-
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                    <LocationCard />
-                    <LocationCard />
-                    <LocationCard />
-                    <LocationCard />
-                </ScrollView>
-            </View>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <LocationCard />
+                    </ScrollView>
+                </View>
 
 
 
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
 
@@ -79,7 +98,7 @@ const styles = StyleSheet.create({
     text: {
         color: '#69DADB',
         fontWeight: 600,
-        fontSize: 24,
+        fontSize: 15,
         textAlign: 'right',
         marginRight: 10
     }
@@ -88,5 +107,55 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 600,
         marginTop: 20
+    }
+    ,
+    hotelBody: {
+        flexDirection: 'row'
+    }
+    ,
+    body: {
+        margin: 2,
+    }
+    ,
+    back: {
+        width: width,
+        height: 350,
+    }
+    ,
+    cardContent: {
+        top: 220
+    }
+    ,
+    label: {
+        color: 'white',
+        fontWeight: 300,
+        fontSize: 40,
+        margin: 8
+    }
+    ,
+    bottomCOntentRow: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
+    ,
+    button: {
+        width: 190,
+        height: 70,
+        backgroundColor: '#69DADB',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        margin: 8
+    }
+    ,
+    buttonText: {
+        color: 'white',
+        fontSize: 24
+    }
+    ,
+    moreNavText: {
+        color: 'white',
+        fontSize: 24,
+        fontWeight: '600',
     }
 })

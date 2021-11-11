@@ -1,21 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput } from 'react-native'
+import login from '../auth/login';
 import LogoLogin from '../components/LogoLogin'
 
-const Login = () => {
+const Login = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const logi = () => {
+        login(email, password, navigation)
+    }
+
     return (
         <ImageBackground style={styles.back} source={require('../assets/images/back.jpg')}>
             <View>
-                <LogoLogin  textTitle={'LOGIN'}/>
-                <TouchableOpacity style={styles.button}>
+                <LogoLogin textTitle={'LOGIN'} />
+                <TouchableOpacity style={styles.button} onPress={() => logi(navigation)}>
                     <Text style={styles.buttonText}>LOGIN</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonR}>
+                <TouchableOpacity style={styles.buttonR} onPress={() => navigation.navigate('Register')}>
                     <Text style={styles.buttonText}>REGISTER</Text>
                 </TouchableOpacity>
 
-                <TextInput style={styles.input} placeholder={'Your email'} />
-                <TextInput style={styles.input} placeholder={'Password'} />
+                <TextInput style={styles.input} placeholder={'Your email'} onChangeText={(email) => setEmail(email)} />
+                <TextInput style={styles.input} secureTextEntry={true} placeholder={'Password'} onChangeText={(password) => setPassword(password)} />
 
             </View>
 
