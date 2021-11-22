@@ -1,20 +1,20 @@
 import React from 'react'
 import { StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity, Touchable, ImageBackground } from 'react-native'
-import { Card, Title } from 'react-native-paper'
-import CityCard from '../components/CityCard'
-import LocationCard from '../components/LocationCard'
+import { Card, Title } from 'react-native-paper';
+import CityCard from '../components/CityCard';
+import LocationCard from '../components/LocationCard';
 const { width, height } = Dimensions.get('screen')
 import ScrollCard from '../components/ScrollCard'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MoreHotels from './MoreHotels'
+import MoreHotels from './MoreHotels';
 
 function Home({ navigation }) {
     return (
         <View>
             <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
-                <View style={{ backgroundColor: '#FEFBF3' }}>
-                    <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={true} indicatorStyle={'white'}>
+                <View style={styles.home}>
+                    <ScrollView contentContainerStyle={styles.scroll} horizontal={true} showsHorizontalScrollIndicator={true} indicatorStyle={'white'}>
                         <View style={styles.hotelBody}>
                             <Card style={styles.body}>
                                 <ImageBackground style={styles.back} source={require('../assets/images/cardOne.jpg')}>
@@ -77,6 +77,10 @@ function Home({ navigation }) {
 export default Home
 
 const styles = StyleSheet.create({
+home:
+    { backgroundColor: '#FEFBF3' }
+,
+
     scroll: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
     ,
     text: {
         color: '#69DADB',
-        fontWeight: 600,
+        fontWeight: "600",
         fontSize: 15,
         textAlign: 'right',
         marginRight: 10
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
     ,
     title: {
         fontSize: 30,
-        fontWeight: 600,
+        fontWeight: "600",
         marginTop: 20
     }
     ,
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
     ,
     label: {
         color: 'white',
-        fontWeight: 300,
+        fontWeight: "300",
         fontSize: 40,
         margin: 8
     }

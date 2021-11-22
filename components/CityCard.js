@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     }
     ,
     description: {
-        fontWeight: 900
+        fontWeight: "900"
     }
 })

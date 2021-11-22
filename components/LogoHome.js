@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
         margin: 0,
-        fontWeight: 600
+        fontWeight: "600"
     }
     ,
     fiveStar: {

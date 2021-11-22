@@ -11,12 +11,12 @@ const HotellCard = ({navigation}) => {
                     <View styles={styles.cardHoteldescriptionBody}>
                         <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
                         <View style style={styles.cardHoteldescriptionSubTitle}>
-                            <Paragraph style={styles.cardCityname}>Durban</Paragraph>
-                            <Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph>
+                            <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
+                            <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
                         </View>
-                        <Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph>
-                        <Paragraph style={styles.cardCityname}>Guests: 8</Paragraph>
-                        <Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph>
+                        <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph></Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -27,12 +27,12 @@ const HotellCard = ({navigation}) => {
                     <View styles={styles.cardHoteldescriptionBody}>
                         <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
                         <View style style={styles.cardHoteldescriptionSubTitle}>
-                            <Paragraph style={styles.cardCityname}>Durban</Paragraph>
-                            <Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph>
+                            <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
+                            <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
                         </View>
-                        <Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph>
-                        <Paragraph style={styles.cardCityname}>Guests: 8</Paragraph>
-                        <Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph>
+                        <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph></Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -43,12 +43,12 @@ const HotellCard = ({navigation}) => {
                     <View styles={styles.cardHoteldescriptionBody}>
                         <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
                         <View style style={styles.cardHoteldescriptionSubTitle}>
-                            <Paragraph style={styles.cardCityname}>Durban</Paragraph>
-                            <Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph>
+                            <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
+                            <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
                         </View>
-                        <Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph>
-                        <Paragraph style={styles.cardCityname}>Guests: 8</Paragraph>
-                        <Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph>
+                        <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph></Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -59,12 +59,12 @@ const HotellCard = ({navigation}) => {
                     <View styles={styles.cardHoteldescriptionBody}>
                         <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
                         <View style style={styles.cardHoteldescriptionSubTitle}>
-                            <Paragraph style={styles.cardCityname}>Durban</Paragraph>
-                            <Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph>
+                            <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
+                            <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
                         </View>
-                        <Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph>
-                        <Paragraph style={styles.cardCityname}>Guests: 8</Paragraph>
-                        <Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph>
+                        <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
+                        <Text><Paragraph style={styles.cardCityname}>BEDS: 8</Paragraph></Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         borderRadius: 20,
         flexDirection: 'row',
-        backgroundColor: '#D3E4CD'
+        backgroundColor: '#fff'
     }
     ,
     image: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     }
     ,
     cardHoteldescription: {
-        fontWeight: 900,
+        fontWeight: "900",
     }
     ,
     cardHoteldescriptionSubTitle: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     },
     cardCityPrice: {
         color: '#69DADB',
-        fontWeight: 600,
+        fontWeight: "600",
         fontSize: 20,
         top: -10
 
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
 
     pageTitle: {
         marginTop: 20,
-        fontWeight: 600,
+        fontWeight: "600",
         fontSize: 30,
     }
 })

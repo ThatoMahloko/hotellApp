@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     ,
     label: {
         color: 'white',
-        fontWeight: 300,
+        fontWeight: "300",
         fontSize: 40,
         margin: 8
     }
@@ -95,6 +95,6 @@ const styles = StyleSheet.create({
     moreNavText: {
         color: 'white',
         fontSize: 24,
-        fontWeight: '600',
+        fontWeight: "600",
     }
 })

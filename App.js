@@ -8,19 +8,22 @@ import PopularLocations from './screens/PopularLocations.'
 import MoreHotels from './screens/MoreHotels'
 import ScrollCard from './components/ScrollCard';
 import Hotel from './screens/Hotel';
+import { SafeAreaView } from 'react-navigation';
 const Stack = createNativeStackNavigator()
 export default function App({ navigation }) {
 
   return (
-    <NavigationContainer >
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='Hotel' component={Hotel} />
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='Popular' component={PopularLocations} />
-        <Stack.Screen name='More' component={MoreHotels} />
-        <Stack.Screen name='ScrollCard' component={ScrollCard} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView>
+      <NavigationContainer >
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name='Home' component={Home} />
+          <Stack.Screen name='Popular' component={PopularLocations} />
+          <Stack.Screen name='More' component={MoreHotels} />
+          <Stack.Screen name='ScrollCard' component={ScrollCard} />
+          <Stack.Screen name='Hotel' component={Hotel} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
