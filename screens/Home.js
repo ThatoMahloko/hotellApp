@@ -12,7 +12,9 @@ import MoreHotels from './MoreHotels';
 function Home({ navigation }) {
     return (
         <View>
+
             <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
+
                 <View style={styles.home}>
                     <ScrollView contentContainerStyle={styles.scroll} horizontal={true} showsHorizontalScrollIndicator={true} indicatorStyle={'white'}>
                         <View style={styles.hotelBody}>
@@ -21,13 +23,15 @@ function Home({ navigation }) {
                                     <View style={styles.cardContent}>
                                         <Title style={styles.label}>CapeTown</Title>
                                         <View style={styles.bottomCOntentRow}>
-                                            <TouchableOpacity style={styles.button}  onPress={()=> navigation.navigate('Hotel')}>
+                                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Hotel')}>
                                                 <Text style={styles.buttonText}>BOOK HOTEL</Text>
-                                            </TouchableOpacity>                                         
+                                            </TouchableOpacity>
                                         </View>
                                     </View>
                                 </ImageBackground>
                             </Card>
+
+
                             <Card style={styles.body}>
                                 <ImageBackground style={styles.back} source={require('../assets/images/cardTwo.jpg')}>
                                     <View style={styles.cardContent}>
@@ -36,50 +40,52 @@ function Home({ navigation }) {
                                             <TouchableOpacity style={styles.button}>
                                                 <Text style={styles.buttonText}>BOOK HOTEL</Text>
                                             </TouchableOpacity>
-                                            <TouchableOpacity>
-                                                <Title style={styles.moreNavText}>MORE HOTELS+</Title>
-                                            </TouchableOpacity>
                                         </View>
                                     </View>
                                 </ImageBackground>
                             </Card>
-
-                        </View >                    </ScrollView>
+                        </View >
+                    </ScrollView>
 
                     <Title style={styles.title}>Recently Booked</Title>
                     <TouchableOpacity onPress={() => navigation.navigate('More')}>
                         <Title style={styles.text}>View All</Title>
                     </TouchableOpacity>
-                    <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={false} indicatorStyle={'white'}>
 
+                    <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={false} indicatorStyle={'white'}>
                         <View>
                             <CityCard />
                         </View>
-
                     </ScrollView>
+
                     <Title style={styles.title}>Popular Locations</Title>
                     <TouchableOpacity onPress={() => navigation.navigate('Popular')}>
                         <Title style={styles.text}>View All</Title>
                     </TouchableOpacity>
 
+
+
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <LocationCard />
                     </ScrollView>
+
                 </View>
 
 
 
-            </ScrollView>
-        </View>
+
+            </ScrollView >
+
+        </View >
     )
 }
 
 export default Home
 
 const styles = StyleSheet.create({
-home:
-    { backgroundColor: '#FEFBF3' }
-,
+    home:
+        { backgroundColor: '#FEFBF3' }
+    ,
 
     scroll: {
         justifyContent: 'center',
@@ -133,7 +139,7 @@ home:
     label: {
         color: 'white',
         fontWeight: "300",
-        fontSize: 40,
+        fontSize: 31,
         margin: 8
     }
     ,
@@ -160,6 +166,6 @@ home:
     moreNavText: {
         color: 'white',
         fontSize: 24,
-        fontWeight: '600',
+        fontWeight: '300',
     }
 })

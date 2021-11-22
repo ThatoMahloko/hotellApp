@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Dimensions, ImageBackground, Image, SafeAreaView, TouchableOpacity } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler'
+import { StyleSheet, View, Dimensions, ImageBackground, Image, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native'
 import { Title, Card, Paragraph, Text, Button, Modal, Portal, Provider, TextInput } from 'react-native-paper'
 const { width, height } = Dimensions.get('screen')
 import DateTimePickerModal from "react-native-modal-datetime-picker";
@@ -10,7 +9,7 @@ const Hotel = () => {
     const [text, setText] = useState('');
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
-    const containerStyle = { backgroundColor: 'white', padding: 20, width: width - 60, alignSelf: 'center' };
+    const containerStyle = { backgroundColor: 'white', padding: 20, width: width - 60, alignSelf: 'center', zIndex: 1 };
 
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
@@ -29,64 +28,65 @@ const Hotel = () => {
 
 
     return (
-        <SafeAreaView style={styles.hotel}>
-            <ImageBackground style={styles.hotelCover} source={require('../assets/images/hotelCover.jpg')}>
-                <Title style={styles.hotelTitle}>Paradise Hotel & Spa</Title>
-                <View style={styles.fiveStar}>
-                    <Image style={styles.star} source={require('../assets/icons/star.png')} />
-                    <Image style={styles.star} source={require('../assets/icons/star.png')} />
-                    <Image style={styles.star} source={require('../assets/icons/star.png')} />
-                    <Image style={styles.star} source={require('../assets/icons/star.png')} />
-                    <Image style={styles.star} source={require('../assets/icons/star.png')} />
-                </View>
-            </ImageBackground>
-            <Card>
+        <ScrollView horizontal={false} style={styles.hotel}>
+            <View>
+                <ImageBackground style={styles.hotelCover} source={require('../assets/images/hotelCover.jpg')}>
+                    <Title style={styles.hotelTitle}>Paradise Hotel & Spa</Title>
+                    <View style={styles.fiveStar}>
+                        <Image style={styles.star} source={require('../assets/icons/star.png')} />
+                        <Image style={styles.star} source={require('../assets/icons/star.png')} />
+                        <Image style={styles.star} source={require('../assets/icons/star.png')} />
+                        <Image style={styles.star} source={require('../assets/icons/star.png')} />
+                        <Image style={styles.star} source={require('../assets/icons/star.png')} />
+                    </View>
+                </ImageBackground>
+
                 <View style={styles.servicesList}>
                     <Image style={styles.serviceIcon} source={require('../assets/icons/roomService.png')} />
                     <Image style={styles.serviceIcon} source={require('../assets/icons/wifi.png')} />
                     <Image style={styles.serviceIcon} source={require('../assets/icons/beds.png')} />
                     <Image style={styles.serviceIcon} source={require('../assets/icons/bar.png')} />
                 </View>
-            </Card>
 
-            <Text style={styles.paragraph}>
-                Lorem, ipsum dolor sit amet
-                consectetur adipisicing elit. Eaque
-                inventore ab porro amet molestias
-                autem? Cumque illo perspiciatis sint
-                iure.
-            </Text>
+                <Text style={styles.paragraph}>
+                    Lorem, ipsum dolor sit amet
+                    consectetur adipisicing elit. Eaque
+                    inventore ab porro amet molestias
+                    autem? Cumque illo perspiciatis sint
+                    iure.
+                </Text>
 
-            <View style={styles.horizontalRef} />
+                <View style={styles.horizontalRef} />
 
-            <ScrollView style={{ marginTop: 30, zIndex: 1 }} horizontal={true}>
-                <Image style={styles.roomView} source={require('../assets/rooms/bedRoom.jpg')} />
+                <ScrollView style={{ marginTop: 30 }} horizontal={true}>
+                    <Image style={styles.roomView} source={require('../assets/rooms/bedRoom.jpg')} />
 
-                <Image style={styles.roomView} source={require('../assets/rooms/balcony.jpg')} />
+                    <Image style={styles.roomView} source={require('../assets/rooms/balcony.jpg')} />
 
-                <Image style={styles.roomView} source={require('../assets/rooms/poolArea.jpg')} />
+                    <Image style={styles.roomView} source={require('../assets/rooms/poolArea.jpg')} />
 
-                <Image style={styles.roomView} source={require('../assets/rooms/shower.jpg')} />
-            </ScrollView>
+                    <Image style={styles.roomView} source={require('../assets/rooms/shower.jpg')} />
+                </ScrollView>
 
-            <Provider>
-                <Portal>
-                    <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
-                        <TextInput
-                            label="Email"
-                            value={text}
-                            onChangeText={text => setText(text)}
-                        />
-                        <Button style={styles.button} onPress={showDatePicker}>
-                            <Text style={styles.buttonText}>DATE</Text>
-                        </Button>
-                    </Modal>
-                </Portal>
+                <Provider>
+                    <Portal>
+                        <Modal visible={visible} onDismiss={hideModal} contentContainerStyle={containerStyle}>
+                            <TextInput
+                                label="Email"
+                                value={text}
+                                onChangeText={text => setText(text)}
+                            />
+                            <Button style={styles.button} onPress={showDatePicker}>
+                                <Text style={styles.buttonText}>DATE</Text>
+                            </Button>
+                        </Modal>
+                    </Portal>
+                </Provider>
 
-                <Button onPress={showModal} style={styles.button}>
-                    <Text style={styles.buttonText}>BOOK HOTEL</Text>
-                </Button>
-            </Provider>
+            </View>
+            <Button onPress={showModal} style={styles.button}>
+                <Text style={styles.buttonText}>BOOK HOTEL</Text>
+            </Button>
 
             <DateTimePickerModal
                 isVisible={isDatePickerVisible}
@@ -95,7 +95,7 @@ const Hotel = () => {
                 onCancel={hideDatePicker}
             />
 
-        </SafeAreaView>
+        </ScrollView>
     )
 }
 
@@ -130,12 +130,13 @@ const styles = StyleSheet.create({
     ,
     servicesList: {
         flexDirection: 'row',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        zIndex: 0
     }
     ,
     serviceIcon: {
-        width: 80,
-        height: 80,
+        width: 60,
+        height: 60,
         margin: 10
     }
     ,
@@ -202,7 +203,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5
     },
 
     buttonOpen: {

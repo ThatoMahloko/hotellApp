@@ -6,7 +6,7 @@ const CityCard = () => {
     return (
         <View style={styles.Card}>
             <Card style={styles.cityCard}>
-                <Image style={styles.cityImg} source={require('../assets/images/townOne.jpg')} />
+                <Image style={styles.cityImg} source={require('../assets/images/cityOne.jpg')} />
                 <Title>Cape Town</Title>
                 <Text style={styles.description}>1 room - 2 guests</Text>
             </Card>
@@ -43,7 +43,8 @@ const styles = StyleSheet.create({
     }
     ,
     cityImg: {
-        height: '50%',
+        height: 80,
+        width:160,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     }

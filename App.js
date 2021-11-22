@@ -13,17 +13,13 @@ const Stack = createNativeStackNavigator()
 export default function App({ navigation }) {
 
   return (
-    <SafeAreaView>
       <NavigationContainer >
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name='Home' component={Home} />
-          <Stack.Screen name='Popular' component={PopularLocations} />
-          <Stack.Screen name='More' component={MoreHotels} />
-          <Stack.Screen name='ScrollCard' component={ScrollCard} />
           <Stack.Screen name='Hotel' component={Hotel} />
+          <Stack.Screen name='More' component={MoreHotels} />
         </Stack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
   );
 }
 
