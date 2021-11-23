@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput, Alert } from 'react-native'
 import login from '../auth/login';
 import LogoLogin from '../components/LogoLogin'
 
@@ -8,7 +8,17 @@ const Login = ({ navigation }) => {
     const [password, setPassword] = useState('');
 
     const logi = () => {
-        login(email, password, navigation)
+        if (email == "" && password == "") {
+            Alert.alert("ERROR 001",
+                "Please enter you email address and password",
+                [
+                    
+                    { text: "OK", onPress: () => console.log("OK Pressed") }
+                ]
+            )
+        } else {
+            login(email, password, navigation)
+        }
     }
 
     return (

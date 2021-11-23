@@ -7,14 +7,14 @@ import HotellCard from '../components/HotellCard'
 function MoreHotels({ navigation }) {
     return (
         <SafeAreaView style={styles.hotelBody}>
-            <ScrollView horizontal={false}>
+            <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                 <View style={styles.hotelCardMainBody}>
                     <Title style={styles.pageTitle}>More Hotels</Title>
-                    <TouchableOpacity onPress={() => navigation.navigate('Hotel')}>
+                    <TouchableOpacity  onPress={() => navigation.navigate('Hotel')}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaOne.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
-                                <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
+                                <Text styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Text>
                                 <View style style={styles.cardHoteldescriptionSubTitle}>
                                     <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
                                     <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
@@ -30,10 +30,10 @@ function MoreHotels({ navigation }) {
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaTwo.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
-                                <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
+                                <Text styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Text>
                                 <View style style={styles.cardHoteldescriptionSubTitle}>
                                     <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
-                                    <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
+                                    <Text><Paragraph style={styles.cardCityPrice}> R 980.00</Paragraph></Text>
                                 </View>
                                 <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
                                 <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
@@ -46,10 +46,10 @@ function MoreHotels({ navigation }) {
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaThree.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
-                                <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
+                                <Text styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Text>
                                 <View style style={styles.cardHoteldescriptionSubTitle}>
                                     <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
-                                    <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
+                                    <Text><Paragraph style={styles.cardCityPrice}> R 980.00</Paragraph></Text>
                                 </View>
                                 <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
                                 <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
@@ -62,10 +62,10 @@ function MoreHotels({ navigation }) {
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaFour.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
-                                <Title styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Title>
+                                <Text styles={styles.cardHoteldescription}>Paradise Hotel & Spa</Text>
                                 <View style style={styles.cardHoteldescriptionSubTitle}>
                                     <Text><Paragraph style={styles.cardCityname}>Durban</Paragraph></Text>
-                                    <Text><Paragraph style={styles.cardCityPrice}>R 980.00</Paragraph></Text>
+                                    <Text><Paragraph style={styles.cardCityPrice}> R 980.00</Paragraph></Text>
                                 </View>
                                 <Text><Paragraph style={styles.cardCityname}>Rooms: 4</Paragraph></Text>
                                 <Text><Paragraph style={styles.cardCityname}>Guests: 8</Paragraph></Text>
@@ -91,26 +91,28 @@ const styles = StyleSheet.create({
 
     hotelCardMainBody: {
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
     }
     ,
     hotelCardBody: {
-        width: 400,
+        width: 340,
         height: 160,
         marginTop: 20,
-        borderRadius: 20,
+        borderRadius: 10,
         flexDirection: 'row',
         backgroundColor: '#fff',
-        borderWidth: 0.1,
-        borderColor: '#66806A'
+        borderColor: '#66806A',
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+        borderWidth: 0.1
     }
     ,
     image: {
         width: 140,
         height: 160,
         right: 0,
-        borderTopLeftRadius: 20,
-        borderBottomLeftRadius: 20,
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
         marginRight: 20
     }
     ,
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     }
     ,
     cardHoteldescription: {
-        fontWeight: "900",
+        fontWeight: "400",
     }
     ,
     cardHoteldescriptionSubTitle: {
@@ -128,13 +130,13 @@ const styles = StyleSheet.create({
     ,
     cardCityname: {
         color: 'grey',
-        fontSize: 20,
+        fontSize: 15,
         marginRight: 20
     },
     cardCityPrice: {
         color: '#69DADB',
         fontWeight: "600",
-        fontSize: 20,
+        fontSize: 15,
         top: -10
 
     }
