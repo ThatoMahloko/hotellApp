@@ -10,24 +10,34 @@ import { city } from '../auth/data/fetchHotelData'
 function MoreHotels({ navigation }) {
     const [hotel, setHotel] = useState('Durban')
 
-    useEffect(() => {
-        const cityState = () => {
-            if (hotel == "Durban") {
-                fetchHotelData(hotel)
-            } else
-                if (hotel == "Durban") {
-                    fetchHotelData(hotel)
+    const setDurban = () => {
+        setHotel("Durban")
+        fetchHotelData(hotel)
+        navigation.navigate("Hotel")
 
-                } else
-                    if (hotel == "Durban") {
-                        fetchHotelData(hotel)
+    }
 
-                    } else
-                        if (hotel == "Durban") {
-                            fetchHotelData(hotel)
-                        }
-        }
-    }, [])
+    const setCapeTown = () => {
+        setHotel("CapeTown")
+        fetchHotelData(hotel)
+        navigation.navigate("Hotel")
+
+    }
+
+    const setPortElizabeth = () => {
+        setHotel("PortElizabeth")
+        fetchHotelData(hotel)
+        navigation.navigate("Hotel")
+
+    }
+
+    const setSandton = () => {
+        setHotel("Sandton")
+        fetchHotelData(hotel)
+        navigation.navigate("Hotel")
+
+    }
+
 
 
     return (
@@ -35,7 +45,7 @@ function MoreHotels({ navigation }) {
             <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                 <View style={styles.hotelCardMainBody}>
                     <Title style={styles.pageTitle}>More Hotels</Title>
-                    <TouchableOpacity style={styles.touchCard} >
+                    <TouchableOpacity style={styles.touchCard} onPress={setDurban}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaOne.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -51,7 +61,7 @@ function MoreHotels({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.touchCard} onPress={() => navigation.navigate('Hotel')}>
+                    <TouchableOpacity style={styles.touchCard} onPress={setCapeTown}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaTwo.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -67,7 +77,7 @@ function MoreHotels({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.touchCard} onPress={() => navigation.navigate('Hotel')}>
+                    <TouchableOpacity style={styles.touchCard} onPress={setPortElizabeth}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaThree.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -83,7 +93,7 @@ function MoreHotels({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.touchCard} onPress={() => navigation.navigate('Hotel')}>
+                    <TouchableOpacity style={styles.touchCard} onPress={setPortElizabeth}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaFour.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
