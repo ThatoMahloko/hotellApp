@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, TextInput, Alert } from 'react-native'
 import LogoLogin from '../components/LogoLogin'
 import register from '../auth/register'
 
@@ -9,8 +9,17 @@ const Register = ({ navigation }) => {
     const [confirmPassword, setConfrimPassword] = useState('')
 
     const registerUser = () => {
-        register(email, passsword, confirmPassword, navigation)
+        if (email == "" && passsword == "" && confirmPassword == "") {
+            Alert.alert("ERROR 002",
+                "Please enter you email address and password",
+                [
 
+                    { text: "OK", onPress: () => console.log("OK Pressed") }
+                ]
+            )
+        } else {
+            register(email, passsword, confirmPassword, navigation)
+        }
     }
 
     return (

@@ -1,16 +1,41 @@
-import React from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView, Alert } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
 import { Card, Title, Paragraph } from 'react-native-paper'
 import HotellCard from '../components/HotellCard'
+import fetchHotelData from '../auth/data/fetchHotelData'
+import { firebase } from '../config/firebase'
+import { city } from '../auth/data/fetchHotelData'
 
 function MoreHotels({ navigation }) {
+    const [hotel, setHotel] = useState('Durban')
+
+    useEffect(() => {
+        const cityState = () => {
+            if (hotel == "Durban") {
+                fetchHotelData(hotel)
+            } else
+                if (hotel == "Durban") {
+                    fetchHotelData(hotel)
+
+                } else
+                    if (hotel == "Durban") {
+                        fetchHotelData(hotel)
+
+                    } else
+                        if (hotel == "Durban") {
+                            fetchHotelData(hotel)
+                        }
+        }
+    }, [])
+
+
     return (
         <SafeAreaView style={styles.hotelBody}>
             <ScrollView horizontal={false} showsVerticalScrollIndicator={false}>
                 <View style={styles.hotelCardMainBody}>
                     <Title style={styles.pageTitle}>More Hotels</Title>
-                    <TouchableOpacity  onPress={() => navigation.navigate('Hotel')}>
+                    <TouchableOpacity style={styles.touchCard} >
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaOne.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -26,7 +51,7 @@ function MoreHotels({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity style={styles.touchCard} onPress={() => navigation.navigate('Hotel')}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaTwo.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -42,7 +67,7 @@ function MoreHotels({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity style={styles.touchCard} onPress={() => navigation.navigate('Hotel')}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaThree.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -58,7 +83,7 @@ function MoreHotels({ navigation }) {
                         </View>
                     </TouchableOpacity>
 
-                    <TouchableOpacity >
+                    <TouchableOpacity style={styles.touchCard} onPress={() => navigation.navigate('Hotel')}>
                         <View style={styles.hotelCardBody}>
                             <Image style={styles.image} source={require('../assets/images/villaFour.jpg')} />
                             <View styles={styles.cardHoteldescriptionBody}>
@@ -94,10 +119,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     }
     ,
+    touchCard: {
+        borderWidth: 0.6,
+        borderColor: "#000",
+        margin: 10,
+        borderRadius: 10,
+    }
+    ,
     hotelCardBody: {
         width: 340,
         height: 160,
-        marginTop: 20,
         borderRadius: 10,
         flexDirection: 'row',
         backgroundColor: '#fff',
