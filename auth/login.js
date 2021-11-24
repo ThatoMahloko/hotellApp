@@ -1,5 +1,6 @@
 import { firebase } from '../config/firebase'
 import { useNavigation } from '@react-navigation/native'
+import { Alert } from 'react-native'
 
 function login(email, password, navigation) {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
@@ -7,6 +8,7 @@ function login(email, password, navigation) {
         navigation.navigate("Home");
     }).catch((err) => {
         console.log(err)
+        alert(err)
     })
 }
 
