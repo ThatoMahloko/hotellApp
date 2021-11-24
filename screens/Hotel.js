@@ -4,7 +4,7 @@ import { Title, Card, Paragraph, Text, Button, Modal, Portal, Provider, TextInpu
 const { width, height } = Dimensions.get('screen')
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const Hotel = () => {
+const Hotel = ({ navigation, route }) => {
     const [visible, setVisible] = useState(false);
     const [text, setText] = useState('');
     const showModal = () => setVisible(true);
@@ -30,8 +30,8 @@ const Hotel = () => {
     return (
         <ScrollView horizontal={false} style={styles.hotel}>
             <View>
-                <ImageBackground style={styles.hotelCover} source={require('../assets/images/hotelCover.jpg')}>
-                    <Title style={styles.hotelTitle}>Paradise Hotel & Spa</Title>
+                <ImageBackground style={styles.hotelCover} source={{uri:route.params.coverImage}}>
+                    <Title style={styles.hotelTitle}>{route.params.resourtName}</Title>
                     <View style={styles.fiveStar}>
                         <Image style={styles.star} source={require('../assets/icons/star.png')} />
                         <Image style={styles.star} source={require('../assets/icons/star.png')} />
@@ -48,24 +48,18 @@ const Hotel = () => {
                     <Image style={styles.serviceIcon} source={require('../assets/icons/bar.png')} />
                 </View>
 
-                <Text style={styles.paragraph}>
-                    Lorem, ipsum dolor sit amet
-                    consectetur adipisicing elit. Eaque
-                    inventore ab porro amet molestias
-                    autem? Cumque illo perspiciatis sint
-                    iure.
-                </Text>
+                <Text style={styles.paragraph}>{route.params.details}</Text>
 
                 <View style={styles.horizontalRef} />
 
                 <ScrollView style={{ marginTop: 30 }} horizontal={true}>
-                    <Image style={styles.roomView} source={require('../assets/rooms/bedRoom.jpg')} />
+                    <Image style={styles.roomView} source={{uri:route.params.bedRoom}} />
 
-                    <Image style={styles.roomView} source={require('../assets/rooms/balcony.jpg')} />
+                    <Image style={styles.roomView} source={{uri:route.params.balcony}} />
 
-                    <Image style={styles.roomView} source={require('../assets/rooms/poolArea.jpg')} />
+                    <Image style={styles.roomView} source={{uri:route.params.swimmingPool}} />
 
-                    <Image style={styles.roomView} source={require('../assets/rooms/shower.jpg')} />
+                    <Image style={styles.roomView} source={{uri:route.params.shower}} />
                 </ScrollView>
 
                 <Provider>
