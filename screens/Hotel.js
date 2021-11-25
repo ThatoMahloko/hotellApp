@@ -1,36 +1,75 @@
 import React, { useState } from 'react'
-import { StyleSheet, View, Dimensions, ImageBackground, Image, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, View, Dimensions, ImageBackground, Image, SafeAreaView, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { Title, Card, Paragraph, Text, Button, Modal, Portal, Provider, TextInput } from 'react-native-paper'
 const { width, height } = Dimensions.get('screen')
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
+import { db } from '../config/firebase'
+import { useEffect } from 'react/cjs/react.development';
 const Hotel = ({ navigation, route }) => {
     const [visible, setVisible] = useState(false);
     const [text, setText] = useState('');
-    const showModal = () => setVisible(true);
-    const hideModal = () => setVisible(false);
-    const containerStyle = { backgroundColor: 'white', padding: 20, width: width - 60, alignSelf: 'center', zIndex: 1 };
+    const showModal = () => setVisible(true);//checkin picker
+    const hideModal = () => setVisible(false);//checkin picker
 
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+    const containerStyle = { backgroundColor: 'white', padding: 20, width: width - 60, alignSelf: 'center', zIndex: 1 };
+    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);//checkin picker
+    const [isDatePickerVisibleOut, setDatePickerVisibilityOut] = useState(false);//checkout picker
+
+    const [checkInDate, setCheckInDate] = useState()
+    const [checkOutDate, setCheckOutDate] = useState()
+    const [roomId, setRoomId] = useState('')
+
+    useEffect(() => {
+        setRoomId(route.params.id)
+    }, [])
 
     const showDatePicker = () => {
-        setDatePickerVisibility(true);
+        setDatePickerVisibility(true);//checkin picker
     };
 
     const hideDatePicker = () => {
-        setDatePickerVisibility(false);
+        setDatePickerVisibility(false);//checkin picker
+    };
+
+    const showDatePickerOut = () => {
+        setDatePickerVisibilityOut(true);//checkin picker
+    };
+
+    const hideDatePickerOut = () => {
+        setDatePickerVisibilityOut(false);//checkin picker
     };
 
     const handleConfirm = (date) => {
-        console.warn("A date has been picked: ", date);
+        alert("A checkin date has been picked: "+ date)
+        setCheckInDate(date)
         hideDatePicker();
+
+        
     };
 
+
+    const handleCheckout = (date, che) => {
+        hideDatePickerOut()
+        setCheckOutDate(date)
+        alert("A checkout date has been picked: "+ date)
+
+        db.collection('cities').doc(roomId).collection('dates').add(
+            {
+                checkIn: checkInDate,
+                checkOut: checkOutDate
+            }
+        ).then((docRef) => {
+            console.log("Document written with ID: ", docRef.id);
+
+        }).catch((error) => {
+            console.error("Error adding document: ", error)
+        })
+    }
 
     return (
         <ScrollView horizontal={false} style={styles.hotel}>
             <View>
-                <ImageBackground style={styles.hotelCover} source={{uri:route.params.coverImage}}>
+                <ImageBackground style={styles.hotelCover} source={{ uri: route.params.coverImage }}>
                     <Title style={styles.hotelTitle}>{route.params.resourtName}</Title>
                     <View style={styles.fiveStar}>
                         <Image style={styles.star} source={require('../assets/icons/star.png')} />
@@ -49,17 +88,16 @@ const Hotel = ({ navigation, route }) => {
                 </View>
 
                 <Text style={styles.paragraph}>{route.params.details}</Text>
-
                 <View style={styles.horizontalRef} />
 
                 <ScrollView style={{ marginTop: 30 }} horizontal={true}>
-                    <Image style={styles.roomView} source={{uri:route.params.bedRoom}} />
+                    <Image style={styles.roomView} source={{ uri: route.params.bedRoom }} />
 
-                    <Image style={styles.roomView} source={{uri:route.params.balcony}} />
+                    <Image style={styles.roomView} source={{ uri: route.params.balcony }} />
 
-                    <Image style={styles.roomView} source={{uri:route.params.swimmingPool}} />
+                    <Image style={styles.roomView} source={{ uri: route.params.swimmingPool }} />
 
-                    <Image style={styles.roomView} source={{uri:route.params.shower}} />
+                    <Image style={styles.roomView} source={{ uri: route.params.shower }} />
                 </ScrollView>
 
                 <Provider>
@@ -71,8 +109,12 @@ const Hotel = ({ navigation, route }) => {
                                 onChangeText={text => setText(text)}
                             />
                             <Button style={styles.button} onPress={showDatePicker}>
-                                <Text style={styles.buttonText}>DATE</Text>
+                                <Text style={styles.buttonText}>CHECK IN</Text>
                             </Button>
+                            <Button style={styles.button} onPress={showDatePickerOut}>
+                                <Text style={styles.buttonText}>CHECK OUT</Text>
+                            </Button>
+
                         </Modal>
                     </Portal>
                 </Provider>
@@ -88,6 +130,13 @@ const Hotel = ({ navigation, route }) => {
                 onConfirm={handleConfirm}
                 onCancel={hideDatePicker}
             />
+
+            <DateTimePickerModal
+            isVisible={isDatePickerVisibleOut}
+            mode="date"
+            onConfirm={handleCheckout}
+            onCancel={hideDatePicker}
+        />
 
         </ScrollView>
     )

@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     ,
 
     pageTitle: {
-        marginTop: 20,
+        marginTop: 40,
         fontWeight: "600",
         fontSize: 30,
     }
