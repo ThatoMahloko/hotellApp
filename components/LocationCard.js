@@ -3,24 +3,15 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { Title } from 'react-native-paper'
 import { Card } from 'react-native-paper'
 
-const LocationCard = () => {
+const LocationCard = (props) => {
     return (
         <View style={styles.locationBody}>
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityOne.jpg')} />
-                <Title style={styles.text}>Port Elizabeth</Title>
-            </TouchableOpacity>
+            <View style={styles.locationCard}>
+                <Image style={styles.location} source={{uri:props.data.coverImage}} />
+                <Title style={styles.text}>{props.data.City}</Title>
+            </View>
 
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityTwo.jpg')} />
-                <Title style={styles.text}>Durban</Title>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityThree.jpg')} />
-                <Title style={styles.text}>Cape Town</Title>
-            </TouchableOpacity>
+            
 
         </View>
     )

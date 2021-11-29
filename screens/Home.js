@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, ScrollView, Dimensions, Image, TouchableOpacity, Touchable, ImageBackground } from 'react-native'
 import { Card, Title } from 'react-native-paper';
 import CityCard from '../components/CityCard';
@@ -8,8 +8,40 @@ import ScrollCard from '../components/ScrollCard'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MoreHotels from './MoreHotels';
+import { db } from '../config/firebase';
 
-function Home({ navigation }) {
+function Home({ navigation, route }) {
+    const [rooms, setRooms] = useState([])
+    const [locations, setLocations] = useState([])
+
+    const getHotel = (() => {
+        db.collection('cities')
+            .onSnapshot((snapshot) => {
+                const dis = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setRooms(dis);
+                console.log(rooms)
+            });
+
+            db.collection('popularLocations')
+            .onSnapshot((snapshot) => {
+                const dis = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setLocations(dis);
+                console.log(rooms)
+            });
+    })
+
+  
+
+    useEffect(() => {
+        getHotel();
+
+    }, []);
     return (
         <View>
 
@@ -18,32 +50,24 @@ function Home({ navigation }) {
                 <View style={styles.home}>
                     <ScrollView contentContainerStyle={styles.scroll} horizontal={true} showsHorizontalScrollIndicator={true} indicatorStyle={'white'}>
                         <View style={styles.hotelBody}>
-                            <Card style={styles.body}>
-                                <ImageBackground style={styles.back} source={require('../assets/images/cardOne.jpg')}>
-                                    <View style={styles.cardContent}>
-                                        <Title style={styles.label}>CapeTown</Title>
-                                        <View style={styles.bottomCOntentRow}>
-                                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Hotel')}>
-                                                <Text style={styles.buttonText}>BOOK HOTEL</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </ImageBackground>
-                            </Card>
+                            {rooms.map((data) => {
+                                return (
+                                    <Card key={data.id} style={styles.body}>
+                                        <ImageBackground style={styles.back} source={{ uri: data.coverImage }}>
+                                            <View style={styles.cardContent}>
+                                                <Title style={styles.label}>{data.city}</Title>
+                                                <View style={styles.bottomCOntentRow}>
+                                                    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Hotel', data)}>
+                                                        <Text style={styles.buttonText}>BOOK HOTEL</Text>
+                                                    </TouchableOpacity>
+                                                </View>
+                                            </View>
+                                        </ImageBackground>
+                                    </Card>
+                                )
+                            })}
 
 
-                            <Card style={styles.body}>
-                                <ImageBackground style={styles.back} source={require('../assets/images/cardTwo.jpg')}>
-                                    <View style={styles.cardContent}>
-                                        <Title style={styles.label}>Sandton</Title>
-                                        <View style={styles.bottomCOntentRow}>
-                                            <TouchableOpacity style={styles.button}>
-                                                <Text style={styles.buttonText}>BOOK HOTEL</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-                                </ImageBackground>
-                            </Card>
                         </View >
                     </ScrollView>
 
@@ -53,29 +77,31 @@ function Home({ navigation }) {
                     </TouchableOpacity>
 
                     <ScrollView contentContainerStyle={styles.scroll} horizontal showsHorizontalScrollIndicator={false} indicatorStyle={'white'}>
-                        <View>
-                            <CityCard />
-                        </View>
+                        {rooms.map((data) => {
+                            return (
+                                <View key={data.id}>
+                                    <CityCard data={data} />
+                                </View>
+                            )
+                        })}
                     </ScrollView>
 
                     <Title style={styles.title}>Popular Locations</Title>
+
                     <TouchableOpacity onPress={() => navigation.navigate('Popular')}>
                         <Title style={styles.text}>View All</Title>
                     </TouchableOpacity>
 
-
-
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <LocationCard />
+                        {locations.map((data) => {
+                            return (
+                                <LocationCard data={data} />
+                            )
+                        })}
                     </ScrollView>
 
                 </View>
-
-
-
-
             </ScrollView >
-
         </View >
     )
 }

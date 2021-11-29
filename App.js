@@ -7,6 +7,7 @@ import ForgotPassword from './screens/ForgotPassword';
 import Home from './screens/Home';
 import Hotel from './screens/Hotel';
 import MoreHotels from './screens/MoreHotels'
+import PopularLocations from './screens/PopularLocations.';
 const Stack = createNativeStackNavigator()
 export default function App({ navigation }) {
 
@@ -19,6 +20,7 @@ export default function App({ navigation }) {
         <Stack.Screen name='Home' component={Home} />
         <Stack.Screen name='Hotel' component={Hotel} />
         <Stack.Screen name='More' component={MoreHotels} />
+        <Stack.Screen name='Popular' component={PopularLocations} />
       </Stack.Navigator>
     </NavigationContainer>
   );

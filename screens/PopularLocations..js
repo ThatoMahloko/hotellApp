@@ -1,44 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions, SafeAreaView } from 'react-native'
 import { Title } from 'react-native-paper'
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const PopularLocations = () => {
+import { db } from '../config/firebase';
+const PopularLocations = ({navigation}) => {
+    const [locations, setLocations] = useState([])
+
+    const getLocations = (() => {
+        db.collection('popularLocations')
+            .onSnapshot((snapshot) => {
+                const dis = snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setLocations(dis);
+                console.log(locations)
+            });
+    })
+
+    useEffect(() => {
+        getLocations();
+    }, []);
+
     return (
         <SafeAreaView style={styles.popularView}>
             <Title style={styles.pageTitle}>Popular locations</Title>
 
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityOne.jpg')} />
-                <Title style={styles.text}>Port Elizabeth</Title>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityTwo.jpg')} />
-                <Title style={styles.text}>Durban</Title>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityThree.jpg')} />
-                <Title style={styles.text}>Cape Town</Title>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityOne.jpg')} />
-                <Title style={styles.text}>Port Elizabeth</Title>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityTwo.jpg')} />
-                <Title style={styles.text}>Durban</Title>
-            </TouchableOpacity>
+            {locations.map((data) => {
+                return (
+                    <TouchableOpacity key={data.id} style={styles.locationCard} onPress={()=>navigation.navigate('More')}>
+                        <Image style={styles.location} source={{ uri: data.coverImage }} />
+                        <Title style={styles.text}>{data.City}</Title>
+                    </TouchableOpacity>
+                )
+            })}
 
 
-            <TouchableOpacity style={styles.locationCard}>
-                <Image style={styles.location} source={require('../assets/images/cityThree.jpg')} />
-                <Title style={styles.text}>Cape Town</Title>
-            </TouchableOpacity>
 
 
         </SafeAreaView>

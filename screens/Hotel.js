@@ -40,18 +40,18 @@ const Hotel = ({ navigation, route }) => {
     };
 
     const handleConfirm = (date) => {
-        alert("A checkin date has been picked: "+ date)
+        alert("A checkin date has been picked: " + date)
         setCheckInDate(date)
         hideDatePicker();
 
-        
+
     };
 
 
     const handleCheckout = (date, che) => {
         hideDatePickerOut()
         setCheckOutDate(date)
-        alert("A checkout date has been picked: "+ date)
+        alert("A checkout date has been picked: " + date)
 
         db.collection('cities').doc(roomId).collection('dates').add(
             {
@@ -132,11 +132,11 @@ const Hotel = ({ navigation, route }) => {
             />
 
             <DateTimePickerModal
-            isVisible={isDatePickerVisibleOut}
-            mode="date"
-            onConfirm={handleCheckout}
-            onCancel={hideDatePicker}
-        />
+                isVisible={isDatePickerVisibleOut}
+                mode="date"
+                onConfirm={handleCheckout}
+                onCancel={hideDatePicker}
+            />
 
         </ScrollView>
     )

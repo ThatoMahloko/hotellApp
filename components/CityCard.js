@@ -2,26 +2,15 @@ import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { Title } from 'react-native-paper'
 import { Card } from 'react-native-paper'
-const CityCard = () => {
+const CityCard = (props) => {
     return (
         <View style={styles.Card}>
             <Card style={styles.cityCard}>
-                <Image style={styles.cityImg} source={require('../assets/images/cityOne.jpg')} />
-                <Title>Cape Town</Title>
+                <Image style={styles.cityImg} source={{uri:props.data.coverImage}} />
+                <Title>{props.data.city}</Title>
                 <Text style={styles.description}>1 room - 2 guests</Text>
             </Card>
 
-            <Card style={styles.cityCard}>
-                <Image style={styles.cityImg} source={require('../assets/images/townTwo.jpg')} />
-                <Title>Durban</Title>
-                <Text style={styles.description}>2 rooms - 4 guests</Text>
-            </Card>
-
-            <Card style={styles.cityCard}>
-                <Image style={styles.cityImg} source={require('../assets/images/townThree.jpg')} />
-                <Title>Port Elizabeth</Title>
-                <Text style={styles.description}>3 rooms - 6 guests</Text>
-            </Card>
         </View>
     )
 }
@@ -44,7 +33,7 @@ const styles = StyleSheet.create({
     ,
     cityImg: {
         height: 80,
-        width:160,
+        width: 160,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
     }
